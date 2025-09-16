@@ -20,7 +20,8 @@ const DataEncoding = ({ filename, onDataUpdate }) => {
     setError('');
     
     try {
-      const response = await axios.post('http://localhost:5000/api/analyze-encoding');
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/analyze-encoding`);
       setEncodingData(response.data);
     } catch (error) {
       setError(error.response?.data?.error || 'Error analyzing encoding options');
@@ -66,7 +67,8 @@ const DataEncoding = ({ filename, onDataUpdate }) => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/apply-encoding', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/apply-encoding`, {
         operations: validOperations
       });
 

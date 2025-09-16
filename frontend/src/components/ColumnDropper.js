@@ -52,7 +52,8 @@ const ColumnDropper = ({ fileInfo, onDataUpdate }) => {
       setError(null);
       setSuccess(false);
       
-      const response = await axios.post('http://localhost:5000/api/drop-columns', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/drop-columns`, {
         columns: validColumns
       });
       

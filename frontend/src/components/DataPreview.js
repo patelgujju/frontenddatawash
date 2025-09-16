@@ -36,7 +36,7 @@ const DataPreview = ({ fileInfo, onDataLoad }) => {
     try {
       setLoading(true);
       setError(null);
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
   const response = await axios.get(`${apiBaseUrl}/api/preview`);
       
       if (response.data && response.data.data && response.data.columns) {
@@ -64,7 +64,7 @@ const DataPreview = ({ fileInfo, onDataLoad }) => {
     try {
       setLoading(true);
       setError(null);
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
   const response = await axios.get(`${apiBaseUrl}/api/data`);
       
       if (response.data && response.data.data && response.data.columns) {

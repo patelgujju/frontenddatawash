@@ -13,7 +13,8 @@ const DataInfo = ({ fileInfo }) => {
   const loadDataInfo = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/info');
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.get(`${apiBaseUrl}/api/info`);
       setDataInfo(response.data);
     } catch (err) {
       setError(err.response?.data?.error || 'Error loading data info');

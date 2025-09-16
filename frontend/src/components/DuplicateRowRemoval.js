@@ -19,7 +19,8 @@ const DuplicateRowRemoval = ({ filename, onDataUpdate }) => {
     setError('');
     
     try {
-      const response = await axios.post('http://localhost:5000/api/check-duplicates');
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/check-duplicates`);
       setDuplicateInfo(response.data);
     } catch (error) {
       setError(error.response?.data?.error || 'Error checking duplicates');
@@ -37,7 +38,8 @@ const DuplicateRowRemoval = ({ filename, onDataUpdate }) => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/remove-duplicates', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/remove-duplicates`, {
         keep: keepFirst ? 'first' : 'last'
       });
 

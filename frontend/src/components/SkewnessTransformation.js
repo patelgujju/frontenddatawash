@@ -20,7 +20,8 @@ const SkewnessTransformation = ({ filename, onDataUpdate }) => {
     setError('');
     
     try {
-      const response = await axios.post('http://localhost:5000/api/analyze-skewness');
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/analyze-skewness`);
       setSkewnessData(response.data);
       
       // Auto-select recommended transformations
@@ -51,7 +52,8 @@ const SkewnessTransformation = ({ filename, onDataUpdate }) => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/apply-transformations', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/apply-transformations`, {
         transformations: selectedTransformations
       });
 

@@ -24,7 +24,8 @@ const DatasetDescription = ({ fileInfo }) => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.post('http://localhost:5000/api/column-analysis', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/column-analysis`, {
         column: columnName
       });
       

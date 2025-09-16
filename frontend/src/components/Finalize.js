@@ -27,7 +27,8 @@ const Finalize = ({ fileInfo, onDataUpdate, mode }) => {
     console.log('🔍 Loading final preview...');
     
     try {
-      const response = await axios.get('http://localhost:5000/api/final-preview');
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.get(`${apiBaseUrl}/api/final-preview`);
       console.log('✅ Final preview response:', response.data);
       setPreviewData(response.data.preview_data);
       setSummary(response.data.summary);
@@ -54,7 +55,8 @@ const Finalize = ({ fileInfo, onDataUpdate, mode }) => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/save-changes', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/save-changes`, {
         filename: saveFilename || fileInfo?.filename
       });
 
@@ -85,7 +87,8 @@ const Finalize = ({ fileInfo, onDataUpdate, mode }) => {
     setError('');
     
     try {
-      const response = await axios.get('http://localhost:5000/api/generate-report');
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.get(`${apiBaseUrl}/api/generate-report`);
       setReport(response.data);
     } catch (error) {
       setError(error.response?.data?.error || 'Error loading report');
@@ -101,7 +104,8 @@ const Finalize = ({ fileInfo, onDataUpdate, mode }) => {
     setSuccess('');
 
     try {
-      const response = await axios.get('http://localhost:5000/api/download-csv', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.get(`${apiBaseUrl}/api/download-csv`, {
         responseType: 'blob'
       });
 

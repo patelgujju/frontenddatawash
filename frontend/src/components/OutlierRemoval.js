@@ -19,7 +19,8 @@ const OutlierRemoval = ({ fileInfo, onDataUpdate }) => {
 
   const loadDataInfo = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/info');
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.get(`${apiBaseUrl}/api/info`);
       setNumericColumns(response.data.numeric_columns || []);
     } catch (err) {
       console.error('Error loading data info:', err);
@@ -78,7 +79,8 @@ const OutlierRemoval = ({ fileInfo, onDataUpdate }) => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.post('http://localhost:5000/api/detect-outliers', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/detect-outliers`, {
         columns: numericColumns
       });
       
@@ -106,7 +108,8 @@ const OutlierRemoval = ({ fileInfo, onDataUpdate }) => {
       setError(null);
       setSuccess(false);
       
-      const response = await axios.post('http://localhost:5000/api/remove-outliers', {
+  const apiBaseUrl = process.env.REACT_APP_API_URL;
+  const response = await axios.post(`${apiBaseUrl}/api/remove-outliers`, {
         rules: validRules
       });
       

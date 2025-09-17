@@ -36,16 +36,24 @@ const DataPreview = ({ fileInfo, onDataLoad }) => {
     try {
       setLoading(true);
       setError(null);
-  const apiBaseUrl = process.env.REACT_APP_API_URL;
-  const response = await axios.get(`${apiBaseUrl}/api/preview`);
-      
+      const apiBaseUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.get(`${apiBaseUrl}/api/preview`);
+
       if (response.data && response.data.data && response.data.columns) {
         setPreviewData(response.data);
         if (onDataLoad) {
           onDataLoad(response.data);
         }
       } else {
-        setError('Invalid data format received from server');
+        // Show the actual response for debugging
+        setError(
+          <div>
+            <div>Invalid data format received from server</div>
+            <pre style={{textAlign: 'left', background: '#f8f8f8', padding: '1em', borderRadius: '6px', overflowX: 'auto'}}>
+              {JSON.stringify(response.data, null, 2)}
+            </pre>
+          </div>
+        );
       }
     } catch (err) {
       setError(err.response?.data?.error || 'Error loading preview data');

@@ -32,7 +32,7 @@ const FileUpload = ({ onFileUpload }) => {
 
     try {
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
-  const response = await axios.post(`${apiBaseUrl}/api/upload`, formData, {
+  const response = await axios.post(`/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -149,3 +149,4 @@ const FileUpload = ({ onFileUpload }) => {
 };
 
 export default FileUpload;
+

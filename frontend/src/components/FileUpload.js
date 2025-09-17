@@ -31,7 +31,7 @@ const FileUpload = ({ onFileUpload }) => {
     formData.append('file', file);
 
     try {
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  const apiBaseUrl = process.env.REACT_APP_APP_URL;
   const response = await axios.post(`$(apiBaseUrl)/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

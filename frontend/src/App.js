@@ -109,6 +109,13 @@ function App() {
   return (
     <div className="App">
       <header className="app-header">
+        <button 
+          className="home-button"
+          onClick={() => window.location.href = 'http://localhost:5173'}
+          title="Go to Home"
+        >
+          ←
+        </button>
         <div className="header-content">
           <h1>📊 Data Cleaning Pro</h1>
           <p>Professional Data Analysis & Cleaning Tool</p>
